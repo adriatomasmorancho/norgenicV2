@@ -31,7 +31,7 @@ class BookController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, string $locale)
     {
         $request->validate([
             'title' => 'required|string',
@@ -46,11 +46,11 @@ class BookController extends Controller
 
         Session::flash('message', __('messageBookCreated'));
 
-        return redirect()->route('books.create');
+        return redirect()->route('books.create', ['locale' => $locale]);
 
         }catch (Exception $e) {
 
-            return redirect()->route('error.book');
+            return redirect()->route('error.book', ['locale' => $locale]);
         }
 
     }
@@ -66,13 +66,13 @@ class BookController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $locale,string $id)
     {
         try{
         $book = Book::searchBooks($id);
 
         if ($book === null) {
-            return redirect()->route('error.generic');
+            return redirect()->route('error.generic', ['locale' => $locale]);
         }
 
         $authors = Author::showAuthors();
@@ -80,14 +80,14 @@ class BookController extends Controller
         return view('books.edit',  compact('book', 'authors'));
         }catch (Exception $e) {
 
-            return redirect()->route('error.generic');
+            return redirect()->route('error.generic', ['locale' => $locale]);
         }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $locale, string $id)
     {
         $request->validate([
             'title' => 'required|string',
@@ -102,25 +102,25 @@ class BookController extends Controller
 
         Session::flash('message', __('messageBookEdited'));
 
-        return redirect()->route('books.edit', ['id' => $id]);
+        return redirect()->route('books.edit', ['id' => $id, 'locale' => $locale]);
 
         }catch (Exception $e) {
 
-            return redirect()->route('error.book');
+            return redirect()->route('error.book', ['locale' => $locale]);
         }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $locale,string $id)
     {
         try {
             Book::removeBooks($id);
             Session::flash('message', __('messageBookDeleted'));
-            return redirect()->route('books');
+            return redirect()->route('books', ['locale' => $locale]);
         } catch (Exception $e) {
-            return redirect()->route('error.generic');
+            return redirect()->route('error.generic', ['locale' => $locale]);
         }
     }
 }

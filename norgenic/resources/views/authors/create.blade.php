@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('title')
-<title>bookstore/<?php echo getenv('APP_LOCALE'); ?>/authors/create</title>
+<title>bookstore/<?php echo  app()->getLocale(); ?>/authors/create</title>
 @endsection
 
 @section('content')
@@ -17,7 +17,7 @@
 </div>
 @endif
 <h1 class="p-2">{{ __('newAuthor') }}</h1>
-<form method="POST" action="{{ route('authors.store') }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('authors.store', ['locale' => app()->getLocale()]) }}" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col">

@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('title')
-<title>bookstore/<?php echo getenv('APP_LOCALE'); ?>/books/{{ $book['id'] }}/edit</title>
+<title>bookstore/<?php echo  app()->getLocale(); ?>/books/{{ $book['id'] }}/edit</title>
 @endsection
 
 @section('content')
@@ -17,7 +17,7 @@
 </div>
 @endif
 <h1 class="p-2">{{ __('editBook') }}</h1>
-<form method="POST" action="{{ route('books.update', ['id' => $book->id]) }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('books.update', ['id' => $book->id, 'locale' => app()->getLocale()]) }}" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col">

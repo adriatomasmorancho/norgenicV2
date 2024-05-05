@@ -29,7 +29,7 @@ class AuthorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, string $locale)
     {
         $request->validate([
             'name' => 'required|string',
@@ -40,11 +40,11 @@ class AuthorController extends Controller
 
             Session::flash('message', __('messageAuthorCreated'));
     
-            return redirect()->route('authors.create');
+            return redirect()->route('authors.create', ['locale' => $locale]);
         
     } catch (Exception $e) {
 
-        return redirect()->route('error.author');
+        return redirect()->route('error.author', ['locale' => $locale]);
     }
     
     }
@@ -60,23 +60,23 @@ class AuthorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $locale, string $id)
     {
         try{
         $author = Author::searchAuthors($id);
         if ($author === null) {
-            return redirect()->route('error.generic');
+            return redirect()->route('error.generic', ['locale' => $locale]);
         }
         return view('authors.edit',  compact('author'));
         }catch (Exception $e) {
-            return redirect()->route('error.generic');
+            return redirect()->route('error.generic', ['locale' => $locale]);
         }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $locale, string $id)
     {
         $request->validate([
             'name' => 'required|string',
@@ -88,26 +88,26 @@ class AuthorController extends Controller
 
         Session::flash('message', __('messageAuthorEdited'));
 
-        return redirect()->route('authors.edit', ['id' => $id]);
+        return redirect()->route('authors.edit', ['id' => $id, 'locale' => $locale]);
         }catch (Exception $e) {
 
-            return redirect()->route('error.author');
+            return redirect()->route('error.author', ['locale' => $locale]);
         }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $locale, string $id)
     {
         try{
         Author::removeAuthors($id);
 
         Session::flash('message', __('messageAuthorDeleted'));
 
-        return redirect()->route('authors');
+        return redirect()->route('authors', ['locale' => $locale]);
         }catch (Exception $e) {
-            return redirect()->route('error.generic');
+            return redirect()->route('error.generic', ['locale' => $locale]);
         }
         
     }

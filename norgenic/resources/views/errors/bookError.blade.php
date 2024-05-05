@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('title')
-<title>bookstore/<?php echo getenv('APP_LOCALE'); ?>/bookError</title>
+<title>bookstore/<?php echo  app()->getLocale(); ?>/bookError</title>
 @endsection
 
 @section('content')

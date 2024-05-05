@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('title')
-<title>bookstore/<?php echo getenv('APP_LOCALE'); ?>/books</title>
+<title>bookstore/<?php echo  app()->getLocale(); ?>/books</title>
 @endsection
 
 @section('content')
@@ -18,7 +18,7 @@
 @endif
 <div class="p-2">
     <h1>{{ __('books') }}</h1>
-    <a class="btn btn-primary" href="{{ route('books.create') }}">{{ __('create') }}</a>
+    <a class="btn btn-primary" href="{{ route('books.create', ['locale' => app()->getLocale()]) }}">{{ __('create') }}</a>
     <table class="table">
         <thead>
             <tr>
@@ -35,8 +35,8 @@
                 <td>{{ $book['title'] }}</td>
                 <td>{{ $book['author'] }}</td>
                 <td>
-                    <a class="btn btn-primary" href="{{ route('books.edit', ['id' => $book->book_id]) }}">{{ __('edit') }}</a>
-                    <a class="btn btn-danger" href="{{ route('books.remove', ['id' => $book->book_id]) }}">{{ __('remove') }}</a>
+                    <a class="btn btn-primary" href="{{ route('books.edit', ['id' => $book->book_id, 'locale' => app()->getLocale()]) }}">{{ __('edit') }}</a>
+                    <a class="btn btn-danger" href="{{ route('books.remove', ['id' => $book->book_id, 'locale' => app()->getLocale()]) }}">{{ __('remove') }}</a>
                 </td>
             </tr>
             @endforeach
