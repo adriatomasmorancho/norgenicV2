@@ -45,7 +45,7 @@ Route::get('/bookstore/{locale}/authorError/', [ErrorController::class, 'viewAut
 Route::get('/bookstore/{locale}/bookError/', [ErrorController::class, 'viewBookError'])->name('error.book');
 
 Route::fallback(function () {
-    return redirect()->route('error.generic');
+    return redirect()->route('error.generic', ['locale' => app()->getLocale()]);
 });
 
 });
