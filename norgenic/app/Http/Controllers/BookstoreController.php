@@ -11,7 +11,7 @@ class BookstoreController extends Controller
      */
     public function index()
     {
-        //
+        return view('home.home');
     }
 
     /**
