@@ -1,0 +1,58 @@
+# NORGENIC
+
+== IMPORTANTE
+
+- Modifica el archivo .env con los datos de tu base de datos (puertos, usuario, contraseña) para que la conexión sea 
+
+correcta.
+
+- Al levantar la aplicación en local con el comando "php artisan serve" ir a "http://localhost:8000/bookstore".
+
+- Realiza un "php artisan migrate" para crear las tablas en la base de datos.
+
+- Luego ejecuta el comando "php artisan db:seed", el cual creará automáticamente 4 autores y 4 libros (He utilizado Faker
+
+para rellenar la información).
+
+- Si deseas borrar todo y empezar de nuevo con la base de datos, ejecuta el comando "php artisan migrate:fresh".
+
+- Todas las traducciones de textos que he utilizado están dentro de /resources/lang/en.json o es.json.
+
+== NOVEDADES
+
+=== VISTAS DE ERROR
+
+He añadido tres vistas muy simples de error:
+
+- Error genérico, que utilizo para cualquier ruta incorrecta.
+
+- Error de autor, que utilizo cuando al crear o editar un autor este ya existe.
+
+- Error de libro, que utilizo cuando al crear o editar un libro este ya existe.
+
+Todas estas vistas de error tienen un botón que te permite volver a la vista Home y también un navbar para ir a Autores y 
+
+Libros.
+
+=== TEST
+
+He añadido dos Test muy sencillos:
+
+- Crear y Borrar Autores  en la ubicación test/Feature/AuthorTest.php
+
+- Crear y Borrar Libros  en la ubicación test/Feature/BookTest.php
+
+- Recomiendo ejecutar los SQLite aparte. Además, he añadido "use RefreshDatabase", lo cual hace que cada vez que 
+
+ejecutamos un test, reinicie la base de datos.
+
+- Ejecutar el comando "php artisan test --filter BookTest" para ejecutar solo un archivo de pruebas, o "php artisan test" 
+
+para ejecutar todos los archivos de pruebas.
+
+
+== DIFICULTADES
+
+He tenido algunos problemas con Bootstrap porque lo había utilizado muy poco, pero busqué información en
+
+'https://www.w3schools.com/' y al final lo resolví.
