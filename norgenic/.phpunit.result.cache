@@ -1,0 +1,1 @@
+{"version":1,"defects":{"Tests\\Feature\\AuthorTest::test_DeleteAuthor":7,"Tests\\Feature\\BookTest::test_DeleteBook":8},"times":{"Tests\\Feature\\AuthorTest::test_Author":0.071,"Tests\\Feature\\AuthorTest::test_DeleteAuthor":0.071,"Tests\\Feature\\BookTest::test_Book":0.118,"Tests\\Feature\\BookTest::test_DeleteBook":0.039}}
