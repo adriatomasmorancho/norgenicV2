@@ -1,5 +1,12 @@
 # NORGENIC
 
+== VERSIONES UTILIZADAS
+
+- PHP : 8.1.28
+
+- Laravel Framework: 10.48.10
+
+
 == IMPORTANTE
 
 - Modifica el archivo .env con los datos de tu base de datos (puertos, usuario, contraseña) para que la conexión sea 
