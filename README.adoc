@@ -58,6 +58,15 @@ ejecutamos un test, reinicie la base de datos.
 para ejecutar todos los archivos de pruebas.
 
 
+== LOCALIZACIÓN
+
+- He creado un archivo de Middleware llamado 'SetLocaleMiddleware', el cual verifica si tenemos algún idioma guardado en 
+
+la sesión. Si existe, porque ya hemos accedido anteriormente al sitio web, tomará el idioma que teníamos. Mientras que si 
+
+es la primera vez que entramos, tomará el idioma que tenga configurado cada navegador.
+
+
 == DIFICULTADES
 
 He tenido algunos problemas con Bootstrap porque lo había utilizado muy poco, pero busqué información en
